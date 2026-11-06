@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}<h1>Update Profile</h1><p class="sub">{{ u.email }} · {{ u.role }}</p>
+<div class="card" style="max-width:500px"><form method="post"><label>Name</label><input name="name" value="{{ u.name }}">
+<label>Phone</label><input name="phone" value="{{ u.phone or '' }}"><label>Location</label><input name="location" value="{{ u.location or '' }}">
+<button>Save changes</button></form></div>{% endblock %}

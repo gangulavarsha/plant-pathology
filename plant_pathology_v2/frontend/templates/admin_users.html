@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}<h1>{{ 'Farmers' if role=='farmer' else ('Users' if role=='user' else 'All Users & Farmers') }}</h1>
+<p class="sub"><a href="/admin/users">All</a> · <a href="/admin/users?role=user">Users</a> · <a href="/admin/users?role=farmer">Farmers</a></p>
+<div class="card"><table><tr><th>Name</th><th>Email</th><th>Role</th><th>Location</th><th>Status</th><th></th></tr>
+{% for u in rows %}<tr><td>{{ u.name }}</td><td>{{ u.email }}</td><td>{{ u.role }}</td><td>{{ u.location }}</td>
+<td><span class="badge {{ 'red' if u.is_frozen else '' }}">{{ 'Frozen' if u.is_frozen else 'Active' }}</span></td>
+<td><a class="btn sm {{ '' if u.is_frozen else 'warn' }}" data-confirm="Change status of {{ u.name }}?" href="/admin/freeze/{{ u.id }}">{{ 'Unfreeze' if u.is_frozen else 'Freeze' }}</a></td></tr>
+{% else %}<tr><td colspan="6">No records.</td></tr>{% endfor %}</table></div>{% endblock %}

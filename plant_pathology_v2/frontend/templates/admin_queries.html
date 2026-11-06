@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block body %}<h1>All Queries</h1><p class="sub">Reply to or update answers</p>
+<div class="card">{% for q in rows %}<div class="q"><b>{{ q.name }}</b> <small>· {{ q.created_at }}</small>
+<span class="badge {{ '' if q.answer else 'amber' }}" style="float:right">{{ 'Answered' if q.answer else 'Pending' }}</span><p style="margin:6px 0">{{ q.question }}</p>
+<form method="post" style="display:flex;gap:8px"><input type="hidden" name="qid" value="{{ q.id }}">
+<input name="answer" value="{{ q.answer or '' }}" placeholder="Type reply..." style="margin:0" required><button class="sm">{{ 'Update' if q.answer else 'Reply' }}</button></form></div>
+{% else %}<p>No queries.</p>{% endfor %}</div>{% endblock %}

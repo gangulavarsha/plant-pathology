@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Plant Pathology using ML{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head><body>
+<header class="topbar"><a class="brand" href="/" style="color:#fff">🌿 Plant Pathology using ML</a>
+<nav>{% if not session.uid %}<a href="/login">Login</a><a href="/register">Register</a>{% else %}<a href="/logout">Logout</a>{% endif %}</nav></header>
+{% if session.uid %}
+<div class="layout"><aside class="sidebar">
+<div class="who">{{ session.name }}<br><small>{{ session.role|capitalize }}</small></div>
+<a href="/dashboard">🏠 Dashboard</a>
+{% if session.role=='admin' %}
+<a href="/admin/users">👥 View Users</a><a href="/admin/users?role=farmer">🧑‍🌾 View Farmers</a>
+<a href="/admin/queries">💬 View Queries</a><a href="/admin/predictions">🔬 View Predictions</a>
+{% else %}
+<a href="/predict">🔬 Predict</a><a href="/history">🕘 History</a>
+{% if session.role=='user' %}<a href="/ask">❓ Ask Query</a>{% endif %}
+<a href="/queries">💬 View Queries</a><a href="/profile">⚙️ Update Profile</a>
+{% endif %}</aside><main class="content">
+{% else %}<main class="center-wrap">{% endif %}
+{% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
+{% block body %}{% endblock %}
+</main>{% if session.uid %}</div>{% endif %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script></body></html>

@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}<div class="center"><div class="card"><h1>Create account</h1><p class="sub">Register as a farmer or user</p>
+<form method="post"><label>Full name</label><input name="name" required>
+<label>Email</label><input type="email" name="email" required>
+<label>Password</label><input type="password" name="password" required minlength="4">
+<label>Phone</label><input name="phone"><label>Location</label><input name="location">
+<label>Role</label><select name="role"><option value="farmer">Farmer</option><option value="user">User</option></select>
+<button style="width:100%">Register</button></form><p class="sub" style="margin-top:14px">Already have an account? <a href="/login">Login</a></p></div></div>{% endblock %}

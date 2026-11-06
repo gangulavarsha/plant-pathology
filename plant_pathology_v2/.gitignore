@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+backend/plant.db
+backend/uploads/
+backend/model.joblib

@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}<h1>Queries</h1><p class="sub">{{ 'Your questions and admin replies' if session.role=='user' else 'Answered questions from users' }}</p>
+<div class="card">{% for q in rows %}<div class="q"><b>{{ q.name }}</b> <small>· {{ q.created_at }}</small><p style="margin:6px 0">{{ q.question }}</p>
+{% if q.answer %}<div class="reply"><b>Admin reply:</b> {{ q.answer }} <small>({{ q.answered_at }})</small></div>{% else %}<span class="badge amber">Awaiting reply</span>{% endif %}</div>
+{% else %}<p>No queries yet.</p>{% endfor %}</div>{% endblock %}

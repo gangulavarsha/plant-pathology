@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block body %}<h1>Dashboard</h1><p class="sub">Welcome, {{ session.name }} ({{ session.role }})</p>
+<div class="stats">{% for label, val in stats %}<div class="stat"><b>{{ val }}</b><span>{{ label }}</span></div>{% endfor %}</div>
+{% if session.role!='admin' %}<a class="btn" href="/predict">🔬 New Prediction</a>{% else %}<a class="btn" href="/admin/queries">💬 Answer Queries</a>{% endif %}{% endblock %}

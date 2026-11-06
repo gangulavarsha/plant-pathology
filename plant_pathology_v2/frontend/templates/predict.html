@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block body %}<h1>Predict Disease</h1><p class="sub">Upload a clear photo of a single leaf</p>
+<div class="card"><form method="post" enctype="multipart/form-data" data-loading>
+<div class="drop"><input type="file" id="imageInput" name="image" accept="image/*" required style="max-width:320px"><br><img id="preview" alt="preview"></div>
+<button>Predict</button></form></div>
+{% if r %}<div class="card"><div class="result"><img src="/uploads/{{ r.image }}">
+<div style="flex:1;min-width:240px"><span class="badge {{ '' if r.disease=='Healthy' else 'red' }}">{{ r.disease }}</span>
+<h2 style="margin:10px 0 0">{{ r.disease }}</h2><small>Confidence: {{ r.confidence }}%</small>
+<div class="bar"><i style="width:{{ r.confidence }}%"></i></div><p><b>💊 Advice:</b> {{ r.treatment }}</p></div></div></div>{% endif %}{% endblock %}

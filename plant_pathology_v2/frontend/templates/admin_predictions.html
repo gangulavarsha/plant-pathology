@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block body %}<h1>All Predictions</h1><p class="sub">Every prediction made on the platform</p>
+<div class="card"><table><tr><th>Image</th><th>By</th><th>Disease</th><th>Confidence</th><th>Date</th></tr>
+{% for r in rows %}<tr><td><img class="thumb" src="/uploads/{{ r.image }}"></td><td>{{ r.name }}</td>
+<td><span class="badge {{ '' if r.disease=='Healthy' else 'red' }}">{{ r.disease }}</span></td><td>{{ (r.confidence*100)|round(1) }}%</td><td>{{ r.created_at }}</td></tr>
+{% else %}<tr><td colspan="5">No predictions yet.</td></tr>{% endfor %}</table></div>{% endblock %}
